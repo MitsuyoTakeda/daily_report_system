@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Employee;
-import util.DBUtil;
+import utils.DBUtil;
 
 /**
  * Servlet implementation class EmployeeIndexServlet
