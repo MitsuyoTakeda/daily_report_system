@@ -22,7 +22,7 @@
                             <th>権限</th>
                             <td>
                                 <c:choose>
-                                    <c:when test="${employee.admin_flag } == 1">管理者</c:when>
+                                    <c:when test="${employee.admin_flag == 1 }">管理者</c:when>
                                     <c:otherwise>一般</c:otherwise>
                                 </c:choose>
                             </td>
@@ -33,7 +33,7 @@
                                 <fmt:formatDate value="${employee.created_at }" pattern="yyyy-MM-dd HH:mm:ss" />
                             </td>
                         </tr>
-                                                <tr>
+                        <tr>
                             <th>更新日時</th>
                             <td>
                                 <fmt:formatDate value="${employee.updated_at }" pattern="yyyy-MM-dd HH:mm:ss" />
@@ -42,14 +42,11 @@
                     </tbody>
                 </table>
 
-                <p><a href="<c:url value='employees/edit?id=${employee.id}' />">この従業員情報を編集する</a></p>
-
+                <p><a href="<c:url value='/employees/edit?id=${employee.id }'/>">この従業員情報を編集する</a></p>
             </c:when>
-            <c:otherwise>
-                <h2>お探しのデータは見つかりませんでした。</h2>
-            </c:otherwise>
         </c:choose>
 
         <p><a href="<c:url value='/employees/index' />">一覧に戻る</a></p>
+
     </c:param>
 </c:import>
