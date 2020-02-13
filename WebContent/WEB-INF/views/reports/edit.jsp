@@ -6,7 +6,7 @@
     <c:param name="content">
         <c:choose>
             <c:when test="${report != null }">
-                <form method="POST" action="<c:url value='reports/update' />">
+                <form method="POST" action="<c:url value='/reports/update' />">
                     <c:import url="_form.jsp" />
                 </form>
             </c:when>
