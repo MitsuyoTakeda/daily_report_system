@@ -47,6 +47,9 @@ public class Employee {
     @Column(name = "password", length = 64, nullable = false)
     private String password;
 
+    @Column(name = "division_code", nullable = false)
+    private Integer division_code;
+
     @Column(name ="admin_flag", nullable = false)
     private Integer admin_flag;
 
@@ -56,7 +59,7 @@ public class Employee {
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
 
-    @Column(name = "delete_flag")
+    @Column(name = "delete_flag", nullable = false)
     private Integer delete_flag;
 
 
@@ -90,6 +93,14 @@ public class Employee {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getDivision_code(){
+        return division_code;
+    }
+
+    public void setDivision_code(Integer division_code){
+        this.division_code = division_code;
     }
 
     public Integer getAdmin_flag() {
