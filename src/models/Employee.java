@@ -48,7 +48,7 @@ public class Employee {
     private String password;
 
     @Column(name = "division_code", nullable = false)
-    private Integer division_code;
+    private String division_code;
 
     @Column(name ="admin_flag", nullable = false)
     private Integer admin_flag;
@@ -95,11 +95,11 @@ public class Employee {
         this.password = password;
     }
 
-    public Integer getDivision_code(){
+    public String getDivision_code(){
         return division_code;
     }
 
-    public void setDivision_code(Integer division_code){
+    public void setDivision_code(String division_code){
         this.division_code = division_code;
     }
 

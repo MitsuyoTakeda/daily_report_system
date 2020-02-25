@@ -17,6 +17,18 @@
 <input type="text" name="name" value="${employee.name }" />
 <br /><br />
 
+<label for="division">所属部署</label><br />
+<select name="division">
+    <c:forEach var="division" items="${divisions }">
+        <c:choose>
+            <c:when test="${division.delete_flag == 0 }">
+                <option value="${division.code }">${division.name }</option>
+            </c:when>
+        </c:choose>
+    </c:forEach>
+</select>
+<br /><br />
+
 <label for="password">パスワード</label><br />
 <input type="text" name="password" />
 <br /><br />

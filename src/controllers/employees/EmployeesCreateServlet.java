@@ -59,6 +59,7 @@ public class EmployeesCreateServlet extends HttpServlet {
             e.setCreated_at(currenttime);
             e.setUpdated_at(currenttime);
             e.setDelete_flag(0);
+            e.setDivision_code(request.getParameter("division"));
 
             List<String> errors = EmployeeValidator.validate(e, true, true);
 
