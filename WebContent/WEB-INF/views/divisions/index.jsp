@@ -23,7 +23,16 @@
                     <tr class = "row${status.count % 2 }">
                         <td><c:out value="${division.code }" /></td>
                         <td><c:out value="${division.name }" /></td>
-                        <td><a href = "<c:url value='/divisions/show?id=${division.id }' />">詳細</a></td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${division.delete_flag == 1 }">
+                                    削除済
+                                </c:when>
+                                <c:otherwise>
+                                    <a href = "<c:url value='/divisions/show?id=${division.id }' />">詳細</a></td>
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
                     </tr>
                 </c:forEach>
             </tbody>

@@ -11,15 +11,15 @@
                     <c:import url="_form.jsp" />
                 </form>
 
-                <p><a href="#" onclick="confirmDextroy();">削除</a></p>
-                <form method="POST" action="<c:url value='/devisions/destroy' />">
-                    <input type="hidden" value="${_token }">
+                <p><a href="#" onclick="confirmDestroy();">削除</a></p>
+                <form method="POST" action="<c:url value='/divisions/destroy'/>">
+                    <input type="hidden" name="_token" value="${_token }">
                 </form>
 
                 <script>
                     function confirmDestroy(){
                         if(confirm("本当に削除してよろしいですか？")){
-                            document.form[1].submit();
+                            document.forms[1].submit();
                         }
                     }
 
