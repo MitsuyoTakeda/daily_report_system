@@ -15,13 +15,20 @@ import javax.persistence.Table;
 @Table(name = "division")
 @NamedQueries({
     @NamedQuery(
-        name = "getAllDivisions",
-        query = "SELECT d FROM Division AS d ORDER BY d.code"
+            name  = "getAllDivisions",
+            query = "SELECT d FROM Division AS d ORDER BY d.code"
     ),
     @NamedQuery(
-        name = "getDivisionsCount",
-        query = "SELECT COUNT(d) FROM Division AS d"
-    )
+            name  = "getDivisionsCount",
+            query = "SELECT COUNT(d) FROM Division AS d"
+    ),
+    @NamedQuery(
+            name  = "codeDuplicateCheck",
+            query = "SELECT COUNT(d) FROM Division AS d WHERE d.code = :code"
+    ),
+    @NamedQuery(
+            name  = "nameDuplicateCheck",
+            query = "SELECT COUNT(d) FROM Division AS d WHERE d.name = :name")
 })
 public class Division {
     @Id
@@ -30,7 +37,7 @@ public class Division {
     private Integer id;
 
     @Column(name = "code", nullable = false, unique = true)
-    private Integer code;
+    private String code;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -52,20 +59,20 @@ public class Division {
         this.id = id;
     }
 
-    public Integer getDivision_code() {
+    public String getCode() {
         return code;
     }
 
-    public void setDivision_code(Integer division_code) {
-        this.code = division_code;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getDivision_name() {
+    public String getName() {
         return name;
     }
 
-    public void setDivision_name(String division_name) {
-        this.name = division_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getDelete_flag() {
