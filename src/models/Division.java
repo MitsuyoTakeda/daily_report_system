@@ -23,6 +23,10 @@ import javax.persistence.Table;
             query = "SELECT COUNT(d) FROM Division AS d"
     ),
     @NamedQuery(
+            name = "getDivisionName",
+            query = "SELECT d.name FROM Division AS d WHERE d.code = :code"
+    ),
+    @NamedQuery(
             name  = "codeDuplicateCheck",
             query = "SELECT COUNT(d) FROM Division AS d WHERE d.code = :code"
     ),
