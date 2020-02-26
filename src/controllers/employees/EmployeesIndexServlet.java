@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Division;
 import models.Employee;
 import utils.DBUtil;
 
@@ -50,10 +51,18 @@ public class EmployeesIndexServlet extends HttpServlet {
         long employees_count = (long)em.createNamedQuery("getEmployeesCount", Long.class)
                                            .getSingleResult();
 
+        List<Division> divisions = em.createNamedQuery("getAllDivisions", Division.class)
+                                      .getResultList();
+
+        long divisions_count = (long)em.createNamedQuery("getDivisionsCount", Long.class)
+                                           .getSingleResult();
+
         em.close();
 
         request.setAttribute("employees", employees);
         request.setAttribute("employees_count", employees_count);
+        request.setAttribute("divisions", divisions);
+        request.setAttribute("divisions_count", divisions_count);
         request.setAttribute("page", page);
 
         if(request.getSession().getAttribute("flush") != null){

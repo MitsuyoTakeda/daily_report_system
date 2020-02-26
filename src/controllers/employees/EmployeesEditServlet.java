@@ -1,6 +1,7 @@
 package controllers.employees;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Division;
 import models.Employee;
 import utils.DBUtil;
 
@@ -35,12 +37,15 @@ public class EmployeesEditServlet extends HttpServlet {
         EntityManager em = DBUtil.createEntityManager();
 
         Employee e = em.find(Employee.class, Integer.parseInt(request.getParameter("id")));
+        List<Division> divisions = em.createNamedQuery("getAllDivisions", Division.class)
+                .getResultList();
 
         em.close();
 
         request.setAttribute("employee", e);
         request.setAttribute("_token", request.getSession().getId());
         request.getSession().setAttribute("employee_id", e.getId());
+        request.setAttribute("divisions", divisions);
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/edit.jsp");
         rd.forward(request, response);
