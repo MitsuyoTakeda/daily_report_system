@@ -57,7 +57,7 @@ public class ReportsCreateServlet extends HttpServlet {
 
             r.setTitle(request.getParameter("title"));
             r.setContent(request.getParameter("content"));
-            r.setDivision_code(request.getParameter("division_code"));
+            r.setDivision_code((String)request.getSession().getAttribute("division_code"));
 
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
             r.setCreated_at(currentTime);
