@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(
             name = "getAllReports",
-            query = "SELECT r FROM Report AS r ORDER BY r.id DESC"
+            query = "SELECT r FROM Report AS r WHERE r.division_code = :division_code ORDER BY r.id DESC"
             ),
     @NamedQuery(
             name = "getReportsCount",
@@ -45,6 +45,9 @@ public class Report{
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
+
+    @JoinColumn(name = "division_code", nullable = false)
+    private String division_code;
 
     @Column(name = "report_date", nullable = false)
     private Date report_date;
@@ -77,6 +80,14 @@ public class Report{
 
     public void setEmployee(Employee employee){
         this.employee = employee;
+    }
+
+    public String getDivision_code(){
+        return division_code;
+    }
+
+    public void setDivision_code(String division_code){
+        this.division_code = division_code;
     }
 
     public Date getReport_date() {
