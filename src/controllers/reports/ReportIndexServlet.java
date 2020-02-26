@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Employee;
 import models.Report;
 import utils.DBUtil;
 
@@ -44,13 +45,16 @@ public class ReportIndexServlet extends HttpServlet {
 
         }
 
+        Employee employee = (Employee)request.getSession().getAttribute("login_employee");
+
         List<Report> reports  = em.createNamedQuery("getAllReports", Report.class)
-                                  .setParameter("division_code", request.getSession().getAttribute("login_employee"))
+                                  .setParameter("division_code", employee.getDivision_code())
                                   .setFirstResult(15 * (page - 1))
                                   .setMaxResults(15)
                                   .getResultList();
 
         long reports_count = (long)em.createNamedQuery("getReportsCount", Long.class)
+                                       .setParameter("division_code", employee.getDivision_code())
                                        .getSingleResult();
 
         em.close();
