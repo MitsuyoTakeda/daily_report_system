@@ -45,7 +45,7 @@ public class ReportIndexServlet extends HttpServlet {
         }
 
         List<Report> reports  = em.createNamedQuery("getAllReports", Report.class)
-                                  .setParameter("division_code", request.getSession().getAttribute("division_code"))
+                                  .setParameter("division_code", request.getSession().getAttribute("login_employee"))
                                   .setFirstResult(15 * (page - 1))
                                   .setMaxResults(15)
                                   .getResultList();
