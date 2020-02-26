@@ -1,6 +1,7 @@
 package controllers.employees;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Division;
 import models.Employee;
 import utils.DBUtil;
 
@@ -36,9 +38,17 @@ public class EmployeesShowServlet extends HttpServlet {
 
         Employee e = em.find(Employee.class, Integer.parseInt(request.getParameter("id")));
 
+        List<Division> divisions = em.createNamedQuery("getAllDivisions", Division.class)
+                                       .getResultList();
+
+        long divisions_count = em.createNamedQuery("getDivisionsCount", Long.class)
+                                     .getSingleResult();
+
         em.close();
 
         request.setAttribute("employee", e);
+        request.setAttribute("divisions", divisions);
+        request.setAttribute("divisions_count", divisions_count);
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/show.jsp");
         rd.forward(request, response);

@@ -19,6 +19,16 @@
                             <td>${employee.name }</td>
                         </tr>
                         <tr>
+                            <th>所属部署</th>
+                            <td>
+                                <c:forEach var="division" items="${divisions }" begin="1" end="${divisions_count }">
+                                    <c:if test="${employee.division_code == division.code }">
+                                        <c:out value="${division.name }" />
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                        </tr>
+                        <tr>
                             <th>権限</th>
                             <td>
                                 <c:choose>
