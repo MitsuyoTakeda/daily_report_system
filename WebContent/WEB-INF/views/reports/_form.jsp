@@ -28,5 +28,4 @@
 <br /><br />
 
 <input type="hidden" name="_token" value="${_token }" />
-<input type="hidden" name="division_code" value="${login_employee.division_code}">
 <button type="submit">投稿</button>
