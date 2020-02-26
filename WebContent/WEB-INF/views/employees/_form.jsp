@@ -22,7 +22,7 @@
     <c:forEach var="division" items="${divisions }">
         <c:choose>
             <c:when test="${division.delete_flag == 0 }">
-                <option value="${division.code }">${division.name }</option>
+                <option value="${division.code }" <c:if test="${employee.division_code == division.code }">selected </c:if>>${division.name }</option>
             </c:when>
         </c:choose>
     </c:forEach>
