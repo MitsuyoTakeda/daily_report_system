@@ -21,11 +21,16 @@
                         <td><c:out value="${employee.code }" /></td>
                         <td><c:out value="${employee.name }" /></td>
                         <td>
+                            <c:set var="flg" value="1" />
                             <c:forEach var="division" items="${divisions}" begin="1" end="${divisions_count }">
                                 <c:if test="${employee.division_code == division.code}">
                                         <c:out value="${division.name }" />
+                                        <c:set var="flg" value="0" />
                                 </c:if>
                             </c:forEach>
+                            <c:if test="${flg == 1 }">
+                                所属無し
+                            </c:if>
                         </td>
                         <td>
                             <c:choose>

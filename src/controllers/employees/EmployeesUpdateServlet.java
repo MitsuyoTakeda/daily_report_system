@@ -72,6 +72,13 @@ public class EmployeesUpdateServlet extends HttpServlet {
                         );
             }
 
+            // 所属部署が更新されたらセッション情報を上書き
+            Employee employee = (Employee)request.getSession().getAttribute("login_employee");
+
+            if(!employee.getDivision_code().equals(request.getParameter("division"))){
+                employee.setDivision_code(request.getParameter("division"));
+            }
+
             e.setName(request.getParameter("name"));
             e.setAdmin_flag(Integer.parseInt(request.getParameter("admin_flag")));
             e.setDivision_code(request.getParameter("division"));

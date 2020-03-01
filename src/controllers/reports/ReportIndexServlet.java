@@ -57,9 +57,9 @@ public class ReportIndexServlet extends HttpServlet {
                                        .setParameter("division_code", employee.getDivision_code())
                                        .getSingleResult();
 
-        String division_name = em.createNamedQuery("getDivisionName", String.class)
-                                    .setParameter("code", employee.getDivision_code())
-                                    .getSingleResult();
+        String division_name = (String)em.createNamedQuery("getDivisionName", String.class)
+                                           .setParameter("code", employee.getDivision_code())
+                                           .getSingleResult();
 
         em.close();
 
@@ -67,7 +67,6 @@ public class ReportIndexServlet extends HttpServlet {
         request.setAttribute("reports_count", reports_count);
         request.setAttribute("page", page);
         request.setAttribute("division_name", division_name);
-        request.getSession().setAttribute("division_code", employee.getDivision_code());
 
         if(request.getSession().getAttribute("flush") != null){
             request.setAttribute("flush", request.getSession().getAttribute("flush"));

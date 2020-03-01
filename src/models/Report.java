@@ -27,11 +27,11 @@ import javax.persistence.Table;
             ),
     @NamedQuery(
             name = "getMyAllReports",
-            query = "SELECT r FROM Report AS r WHERE r.employee = :employee ORDER BY r.id DESC"
+            query = "SELECT r FROM Report AS r WHERE r.employee.code = :code ORDER BY r.id DESC"
             ),
     @NamedQuery(
             name = "getMyReportsCount",
-            query = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :employee")
+            query = "SELECT COUNT(r) FROM Report AS r WHERE r.employee.code = :code")
 })
 @Entity
 public class Report{
@@ -46,9 +46,6 @@ public class Report{
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
-    @JoinColumn(name = "division_code", nullable = false)
-    private String division_code;
-
     @Column(name = "report_date", nullable = false)
     private Date report_date;
 
@@ -58,6 +55,9 @@ public class Report{
     @Lob
     @Column(name = "content", nullable = false)
     private String content;
+
+    @Column(name = "division_code", nullable = false)
+    private String division_code;
 
     @Column(name = "created_at", nullable = false)
     private Timestamp created_at;
@@ -82,14 +82,6 @@ public class Report{
         this.employee = employee;
     }
 
-    public String getDivision_code(){
-        return division_code;
-    }
-
-    public void setDivision_code(String division_code){
-        this.division_code = division_code;
-    }
-
     public Date getReport_date() {
         return this.report_date;
     }
@@ -112,6 +104,14 @@ public class Report{
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getDivision_code() {
+        return division_code;
+    }
+
+    public void setDivision_code(String division_code) {
+        this.division_code = division_code;
     }
 
     public Timestamp getCreated_at() {
